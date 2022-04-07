@@ -7,6 +7,7 @@ export class OrderCreatedListener {
   @OnEvent('order.created')
   handleOrderCreatedEvent(event: OrderCreatedEvent) {
     // handle and process "OrderCreatedEvent" event
-    console.log(event);
+		console.log(event);
+		console.log('hey there! i am here!')
   }
 }

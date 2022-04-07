@@ -1,11 +1,11 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, OnModuleInit } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { Order } from '../orders/entities/order.entity';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { OrderCreatedEvent } from './events/order-created.event';
 
 @Injectable()
-export class OrdersService {
+export class OrdersService implements OnModuleInit {
   public orders: Order[] = [
     {
       id: 1,
@@ -19,7 +19,14 @@ export class OrdersService {
     },
   ];
 
-  constructor(private eventEmitter: EventEmitter2) {}
+	constructor(private eventEmitter: EventEmitter2) { }
+	
+	onModuleInit() {
+		this.create({ 
+			description: 'hu',
+			name: 'hi'
+		 })
+	}
 
   create(createOrderDto: CreateOrderDto) {
     const order = {
